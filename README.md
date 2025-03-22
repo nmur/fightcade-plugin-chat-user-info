@@ -11,6 +11,21 @@ If you have not done so already, download and install the [fightcade-plugin-mana
 
 Download `chatUserInfo.js` from the latest [release](https://github.com/nmur/fightcade-plugin-chat-user-info/releases) and place it in your `Fightcade\fc2-electron\resources\app\inject\plugins` directory.
 
+## Configuration
+Modify the values to enable/disable each info component.
+
+```js
+const CONFIG = {
+    chatUserInfo: {
+        enableStatus: false,
+        enableFlag: true,
+        enableRank: true,
+        enablePingText: false,
+        enablePingBars: true,
+    }
+};
+```
+
 ## Limitations
 
-When used alongside the [fightcade-plugin-ping-filter](https://github.com/nmur/fightcade-plugin-ping-filter), the Rank and Ping Bars are not shown.
+When used alongside the [fightcade-plugin-ping-filter](https://github.com/nmur/fightcade-plugin-ping-filter), the Rank and Ping Bars are not shown for users that have been filtered out.
