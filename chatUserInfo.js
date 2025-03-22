@@ -1,13 +1,23 @@
+const CONFIG = {
+    chatUserInfo: {
+        enableStatus: true,
+        enableFlag: true,
+        enableRank: true,
+        enablePingText: true,
+        enablePingBars: true,
+    }
+};
+
 module.exports = (FCADE) => { runPlugin(FCADE) };
 
 const runPlugin = (FCADE) => {
     // Plugin code goes here
     setInterval(()=>{
-        processMessages(FCADE);
+        processMessages(FCADE, CONFIG.chatUserInfo);
     }, 1000);
 }
 
-const processMessages = (FCADE) => {
+const processMessages = (FCADE, chatUserInfo) => {
     const globalUsers = FCADE.globalUsers;
     // Select all message elements and exclude already processed ones
     const messageElements = document.querySelectorAll('#app div.message:not([data-has-flag])') || [];
@@ -38,20 +48,26 @@ const processMessages = (FCADE) => {
             const statusElement = createStatusElement(globalUser?.away);
             // Create and append the flag and ping elements
             const flagElement = createFlagElement(countryData);
+
             // add status element as first element
-            authorElement.parentElement.insertBefore(statusElement, authorElement);
-            authorElement.appendChild(flagElement);
-            if(rankImg){
+            if (chatUserInfo.enableStatus){
+                authorElement.parentElement.insertBefore(statusElement, authorElement);
+            }
+            if (chatUserInfo.enableFlag){
+                authorElement.appendChild(flagElement);
+            }
+            if (chatUserInfo.enableRank && rankImg){
                 const rankElement = createRankElement(rankImg, userFound?.rankTitle);
                 authorElement.appendChild(rankElement);
             }
-            if(pingImg){
+            if (chatUserInfo.enablePingBars && pingImg){
                 const pingElement = createPingElement(pingImg, userFound?.pingTitle);
                 authorElement.appendChild(pingElement);
             }
-            authorElement.appendChild(pingTextElement);
+            if (chatUserInfo.enablePingText){
+                authorElement.appendChild(pingTextElement);
+            }
                        
-
             // Mark the message as processed
             messageElement.dataset.hasFlag = "true";
         }
