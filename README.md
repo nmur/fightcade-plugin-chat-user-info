@@ -3,6 +3,8 @@ Plugin to display status, country, rank, and ping next to the name of users in F
 
 All credit goes to [Ren](https://x.com/rencoding). This is a direct port of the same code included in their [Fightcade Renhanced Plugins](https://github.com/Arkadyzja/fcade-renhanced), just extracted to work with the [fightcade-plugin-manager](https://github.com/nmur/fightcade-plugin-manager).
 
+[![image](./img/image.png)](./img/image.png)
+
 ## Installation
 
 If you have not done so already, download and install the [fightcade-plugin-manager](https://github.com/nmur/fightcade-plugin-manager).
