@@ -1,19 +1,11 @@
-const CONFIG = {
-    chatUserInfo: {
-        enableStatus: true,
-        enableFlag: true,
-        enableRank: true,
-        enablePingText: true,
-        enablePingBars: true,
-    }
-};
+const config = require('./config.json');
 
 module.exports = (FCADE) => { runPlugin(FCADE) };
 
 const runPlugin = (FCADE) => {
     // Plugin code goes here
     setInterval(()=>{
-        processMessages(FCADE, CONFIG.chatUserInfo);
+        processMessages(FCADE, config.chatUserInfo);
     }, 1000);
 }
 
