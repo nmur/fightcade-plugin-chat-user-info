@@ -2,6 +2,14 @@ const config = require('./config.json');
 
 module.exports = (FCADE) => { runPlugin(FCADE) };
 
+const defaultConfig = {
+    enableStatus: true,
+    enableFlag: true,
+    enableRank: true,
+    enablePingText: true,
+    enablePingBars: true,
+};
+
 const runPlugin = (FCADE) => {
     // Plugin code goes here
     setInterval(()=>{
@@ -9,7 +17,11 @@ const runPlugin = (FCADE) => {
     }, 1000);
 }
 
-const processMessages = (FCADE, chatUserInfo) => {
+const processMessages = (FCADE, chatUserInfoConfig) => {
+    if (!chatUserInfoConfig) {
+        chatUserInfoConfig = defaultConfig
+    }
+
     const globalUsers = FCADE.globalUsers;
     // Select all message elements and exclude already processed ones
     const messageElements = document.querySelectorAll('#app div.message:not([data-has-flag])') || [];
@@ -42,21 +54,21 @@ const processMessages = (FCADE, chatUserInfo) => {
             const flagElement = createFlagElement(countryData);
 
             // add status element as first element
-            if (chatUserInfo.enableStatus){
+            if (chatUserInfoConfig.enableStatus){
                 authorElement.parentElement.insertBefore(statusElement, authorElement);
             }
-            if (chatUserInfo.enableFlag){
+            if (chatUserInfoConfig.enableFlag){
                 authorElement.appendChild(flagElement);
             }
-            if (chatUserInfo.enableRank && rankImg){
+            if (chatUserInfoConfig.enableRank && rankImg){
                 const rankElement = createRankElement(rankImg, userFound?.rankTitle);
                 authorElement.appendChild(rankElement);
             }
-            if (chatUserInfo.enablePingBars && pingImg){
+            if (chatUserInfoConfig.enablePingBars && pingImg){
                 const pingElement = createPingElement(pingImg, userFound?.pingTitle);
                 authorElement.appendChild(pingElement);
             }
-            if (chatUserInfo.enablePingText){
+            if (chatUserInfoConfig.enablePingText){
                 authorElement.appendChild(pingTextElement);
             }
                        
