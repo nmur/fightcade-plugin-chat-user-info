@@ -12,18 +12,17 @@ If you have not done so already, download and install the [fightcade-plugin-mana
 Download `chatUserInfo.js` from the latest [release](https://github.com/nmur/fightcade-plugin-chat-user-info/releases) and place it in your `Fightcade\fc2-electron\resources\app\inject\plugins` directory.
 
 ## Configuration
-Modify the values to enable/disable each info component.
-
-```js
-const CONFIG = {
-    chatUserInfo: {
-        enableStatus: false,
-        enableFlag: true,
-        enableRank: true,
-        enablePingText: false,
-        enablePingBars: true,
-    }
-};
+To modify the values to enable/disable each info component, add the following to the `plugins\config.json`:
+```json
+{
+    "chatUserInfo": {
+        "enableStatus": true,
+        "enableFlag": true,
+        "enableRank": false,
+        "enablePingText": true,
+        "enablePingBars": false
+    },
+}
 ```
 
 ## Limitations
